@@ -18,6 +18,34 @@ document.addEventListener('DOMContentLoaded', () => {
     let slideStartTime = 0;
     const slideDuration = 1500; // 1.5 seconds for the slide animation
     
+    // Variables for color changing of first image
+    let colorChangeInterval;
+    const firstImage = images[0];
+    
+    // Function to generate random color with transparency
+    const getRandomColor = () => {
+        const r = Math.floor(Math.random() * 256);
+        const g = Math.floor(Math.random() * 256);
+        const b = Math.floor(Math.random() * 256);
+        return `rgba(${r}, ${g}, ${b}, 0.7)`;
+    };
+    
+    // Function to start color changing
+    const startColorChanging = () => {
+        // Clear any existing interval
+        if (colorChangeInterval) {
+            clearInterval(colorChangeInterval);
+        }
+        
+        // Set interval to change color every 500ms
+        colorChangeInterval = setInterval(() => {
+            firstImage.style.backgroundColor = getRandomColor();
+        }, 500);
+    };
+    
+    // Start color changing immediately
+    startColorChanging();
+    
     // Set initial positions (center of screen)
     const initPositions = () => {
         const centerX = window.innerWidth / 2;
